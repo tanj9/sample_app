@@ -4,15 +4,10 @@ include SendGrid
 class UserMailer < ApplicationMailer
   def account_activation(user)
     @user = user
-    # mail to: user.email, subject: 'Account activation (Sample App)'
     from = SendGrid::Email.new(email: 'jerome.tan@tuta.io')
     to = SendGrid::Email.new(email: user.email)
     subject = 'Account activation (Sample App)'
     content = Content.new(type: 'text/html', value: render('user_mailer/account_activation.html.erb'))
-    # content = Content.new(type: 'text/plain', value: render('user_mailer/account_activation.text.erb'))
-    # content = Content.new(type: 'text/plain', value: "Hi #{@user.name},
-    # Welcome to the Sample App! Click on the link below to activate your account:
-    # #{edit_account_activation_url(@user.activation_token, email: @user.email)}")
     mail = SendGrid::Mail.new(from, subject, to, content)
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
