@@ -14,6 +14,8 @@ gem 'faker', '>= 2.11.0'
 # Add will paginate for user index pagination
 gem 'will_paginate', '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
+# Add Twilio Sendgrid Ruby gem
+gem 'sendgrid-ruby'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

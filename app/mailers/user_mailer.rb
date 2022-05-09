@@ -1,20 +1,28 @@
-class UserMailer < ApplicationMailer
+require 'sendgrid-ruby'
+include SendGrid
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.account_activation.subject
-  #
+class UserMailer < ApplicationMailer
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: 'Account activation (Sample App)'
+    # mail to: user.email, subject: 'Account activation (Sample App)'
+    from = SendGrid::Email.new(email: 'jerome.tan@tuta.io')
+    to = SendGrid::Email.new(email: user.email)
+    subject = 'Account activation (Sample App)'
+    content = Content.new(type: 'text/html', value: render('user_mailer/account_activation.html.erb'))
+    # content = Content.new(type: 'text/plain', value: render('user_mailer/account_activation.text.erb'))
+    # content = Content.new(type: 'text/plain', value: "Hi #{@user.name},
+    # Welcome to the Sample App! Click on the link below to activate your account:
+    # #{edit_account_activation_url(@user.activation_token, email: @user.email)}")
+    mail = SendGrid::Mail.new(from, subject, to, content)
+
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    response = sg.client.mail._('send').post(request_body: mail.to_json)
+    puts response.status_code
+    puts response.body
+    # puts response.parsed_body
+    puts response.headers
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.password_reset.subject
-  #
   def password_reset
     @greeting = "Hi"
 
