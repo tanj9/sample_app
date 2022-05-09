@@ -28,7 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password: 'password',
                                          password_confirmation: 'password' } }
     end
-    # assert_equal 1, ActionMailer::Base.deliveries.size => irrelevant since sendgrid API implementation
+    assert_equal 1, ActionMailer::Base.deliveries.size # irrelevant since sendgrid API implementation
     user = assigns(:user)
     assert_not user.activated?
     # Try to log in without activation
