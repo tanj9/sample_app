@@ -4,7 +4,10 @@ include SendGrid
 class UserMailer < ApplicationMailer
   def account_activation(user)
     @user = user
+    # version for test / development (using #mail method)
     mail to: user.email, subject: "Account activation (Sample App)"
+
+    # version for production / Heroku involing SENDGRID
     # from = SendGrid::Email.new(email: 'jerome.tan@tuta.io')
     # to = SendGrid::Email.new(email: user.email)
     # subject = 'Account activation (Sample App)'
@@ -21,7 +24,10 @@ class UserMailer < ApplicationMailer
 
   def password_reset(user)
     @user = user
+    # version for test / development (using #mail method)
     mail to: user.email, subject: "Password reset (Sample App)"
+
+    # version for production / Heroku involing SENDGRID
     # from = SendGrid::Email.new(email: 'jerome.tan@tuta.io')
     # to = SendGrid::Email.new(email: user.email)
     # subject = 'Password reset (Sample App)'
