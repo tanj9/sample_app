@@ -5,6 +5,8 @@ ruby '3.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.5'
+# Use Active storage validations to prevent uploading too large images
+gem 'active_storage_validations'
 # Use bcrypt to hash passwords
 gem 'bcrypt', '3.1.13'
 # Use bootstrap for CSS - front-end
