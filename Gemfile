@@ -7,6 +7,9 @@ ruby '3.0.3'
 gem 'rails', '~> 6.1.5'
 # Use Active storage validations to prevent uploading too large images
 gem 'active_storage_validations'
+# Use image_processing and mini_magick gems to resize uploaded images
+gem 'image_processing', '1.9.3'
+gem 'mini_magick', '4.9.5'
 # Use bcrypt to hash passwords
 gem 'bcrypt', '3.1.13'
 # Use bootstrap for CSS - front-end
@@ -44,6 +47,8 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Use dotenv-rails gem for to avoid sharing API keys on GitHub
+  gem 'dotenv-rails'
 end
 
 group :development do

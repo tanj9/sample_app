@@ -8,4 +8,5 @@ class Micropost < ApplicationRecord
                                     message: 'must be a valid image format' },
                     size: { less_than: 1.megabytes,
                             message: 'should be less than 1MB' }
+
 end
