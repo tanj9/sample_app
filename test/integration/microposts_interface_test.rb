@@ -4,6 +4,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:jerome)
     @other_user = users(:kevin)
+    @user_without_micropost = users(:marie)
   end
 
   test 'micropost interface' do
@@ -35,5 +36,19 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     # visit another user's page and not having delete links
     get user_path(@other_user)
     assert_select 'a', text: 'delete', count: 0
+  end
+
+  test 'micropost sidebar count' do
+    # user with many microposts
+    log_in_as(@user)
+    get root_path
+    assert_match "#{@user.microposts.count} microposts", response.body
+    # user with no micropost
+    log_in_as(@user_without_micropost)
+    get root_path
+    assert_match '0 microposts', response.body
+    @user_without_micropost.microposts.create!(content: 'first micropost for that user')
+    get root_path
+    assert_match '1 micropost', response.body
   end
 end
