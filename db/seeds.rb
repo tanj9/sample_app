@@ -8,7 +8,10 @@
 
 puts 'START SEEDING'
 
-puts '1/2 - Seeding users 👩‍🦰👩‍🦱 (be patient... it takes time...)'
+puts '1/3 - Destroy all records'
+User.destroy_all
+
+puts '2/3 - Seeding users 👩🙋 (be patient... it takes time...)'
 # Create a first user.
 User.create!(name: 'Jérôme',
              email: 'jerome.Tan@tuta.io',
@@ -39,9 +42,9 @@ User.create!(name: 'Example User',
                activated_at: Time.zone.now)
 end
 
-puts "1/2 - Created #{User.count} users. Thanks for your patience. 🙏"
+puts "2/3 - Created #{User.count} users. Thanks for your patience. 🙏"
 
-puts '2/2 - Seeding microposts 🗒🗒'
+puts '3/3 - Seeding microposts 🗒'
 
 # Generate microposts for a subset of 6 users.
 users = User.order(:created_at).take(6)
@@ -50,6 +53,6 @@ users = User.order(:created_at).take(6)
   users.each { |user| user.microposts.create!(content: content) }
 end
 
-puts "2/2 - Created #{Microposts.count} microposts"
+puts "3/3 - Created #{Micropost.count} microposts"
 
 puts 'FINISHED SEEDING'
