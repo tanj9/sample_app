@@ -8,10 +8,10 @@
 
 puts 'START SEEDING'
 
-puts '1/3 - Destroy all records'
+puts '1/4 - Destroy all records'
 User.destroy_all
 
-puts '2/3 - Seeding users 👩🙋 (be patient... it takes time...)'
+puts '2/4 - Seeding users 👩🙋 (be patient... it takes time...)'
 # Create a first user.
 User.create!(name: 'Jérôme',
              email: 'jerome.Tan@tuta.io',
@@ -42,9 +42,9 @@ User.create!(name: 'Example User',
                activated_at: Time.zone.now)
 end
 
-puts "2/3 - Created #{User.count} users. Thanks for your patience. 🙏"
+puts "2/4 - Created #{User.count} users. Thanks for your patience. 🙏"
 
-puts '3/3 - Seeding microposts 🗒'
+puts '3/4 - Seeding microposts 🗒'
 
 # Generate microposts for a subset of 6 users.
 users = User.order(:created_at).take(6)
@@ -53,6 +53,20 @@ users = User.order(:created_at).take(6)
   users.each { |user| user.microposts.create!(content: content) }
 end
 
-puts "3/3 - Created #{Micropost.count} microposts"
+puts "3/4 - Created #{Micropost.count} microposts"
+
+
+# Create following relationships.
+
+puts '3/4 - Seeding relationships (followed / followers)'
+
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+puts "4/4 - Created #{Relationship.count} relationships"
 
 puts 'FINISHED SEEDING'
