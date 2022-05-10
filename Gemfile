@@ -5,12 +5,19 @@ ruby '3.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.5'
+# Use Active storage validations to prevent uploading too large images
+gem 'active_storage_validations'
+# Use image_processing and mini_magick gems to resize uploaded images
+gem 'image_processing', '1.9.3'
+gem 'mini_magick', '4.9.5'
+# Add cloudinary for image hosting for production
+gem 'cloudinary', '~> 1.16.0'
 # Use bcrypt to hash passwords
 gem 'bcrypt', '3.1.13'
 # Use bootstrap for CSS - front-end
 gem 'bootstrap-sass', '3.4.1'
 # Add Faker for seeding users
-gem 'faker', '>= 2.11.0'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 # Add will paginate for user index pagination
 gem 'will_paginate', '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
@@ -42,6 +49,8 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Use dotenv-rails gem for to avoid sharing API keys on GitHub
+  gem 'dotenv-rails'
 end
 
 group :development do

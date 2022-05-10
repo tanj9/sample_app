@@ -44,3 +44,4 @@ db/test.*
 
 # Ignore .ENV file with Sendgrid API KEY
 sendgrid.env
+.env*
