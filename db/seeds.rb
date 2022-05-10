@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'START SEEDING'
+
+puts '1/2 - Seeding users 👩‍🦰👩‍🦱 (be patient... it takes time...)'
 # Create a first user.
 User.create!(name: 'Jérôme',
              email: 'jerome.Tan@tuta.io',
@@ -37,5 +39,17 @@ User.create!(name: 'Example User',
                activated_at: Time.zone.now)
 end
 
-puts "Created #{User.count} users"
+puts "1/2 - Created #{User.count} users. Thanks for your patience. 🙏"
+
+puts '2/2 - Seeding microposts 🗒🗒'
+
+# Generate microposts for a subset of 6 users.
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(word_count: 5)
+  users.each { |user| user.microposts.create!(content: content) }
+end
+
+puts "2/2 - Created #{Microposts.count} microposts"
+
 puts 'FINISHED SEEDING'
