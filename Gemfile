@@ -10,7 +10,7 @@ gem 'bcrypt', '3.1.13'
 # Use bootstrap for CSS - front-end
 gem 'bootstrap-sass', '3.4.1'
 # Add Faker for seeding users
-gem 'faker', '>= 2.11.0'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 # Add will paginate for user index pagination
 gem 'will_paginate', '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
