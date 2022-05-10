@@ -10,6 +10,8 @@ gem 'active_storage_validations'
 # Use image_processing and mini_magick gems to resize uploaded images
 gem 'image_processing', '1.9.3'
 gem 'mini_magick', '4.9.5'
+# Add cloudinary for image hosting for production
+gem 'cloudinary', '~> 1.16.0'
 # Use bcrypt to hash passwords
 gem 'bcrypt', '3.1.13'
 # Use bootstrap for CSS - front-end
