@@ -1,1 +1,15 @@
+one:
+  follower: jerome
+  followed: kevin
 
+two:
+  follower: jerome
+  followed: marion
+
+three:
+  follower: marion
+  followed: jerome
+
+four:
+  follower: marie
+  followed: jerome
